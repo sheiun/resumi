@@ -1,26 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <Navbar title="110 年 研替找工作" />
+  <Sidebar>
+    <Map />
+  </Sidebar>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Map from "./components/Map.vue";
+import Navbar from "./components/Navbar.vue";
+import Sidebar from "./components/Sidebar.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld
-  }
+    Map,
+    Navbar,
+    Sidebar,
+  },
 };
 </script>
 
 <style>
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
 }
 </style>
