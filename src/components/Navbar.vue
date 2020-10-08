@@ -15,6 +15,7 @@
       <ul class="right hide-on-med-and-down">
         <form>
           <!-- TODO: search to filter companies -->
+          <!-- TODO: mobile compatibility -->
           <div class="input-field">
             <input id="search" type="search" placeholder="搜尋..." required />
             <label class="label-icon" for="search">
@@ -40,5 +41,6 @@ export default {
 <style scoped>
 .brand-logo {
   padding: 5px;
+  white-space: nowrap;
 }
 </style>
