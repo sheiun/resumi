@@ -83,4 +83,10 @@ export default {
   right: 0;
   bottom: 0;
 }
+
+@media only screen and (max-width: 600px) {
+  #map {
+    top: 54px;
+  }
+}
 </style>
