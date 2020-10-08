@@ -1,6 +1,9 @@
 <template>
   <ul id="slide-out" class="sidenav collapsible">
     <li>
+      <a class="subheader">篩選</a>
+    </li>
+    <li>
       <div class="collapsible-header">
         <i class="material-icons">arrow_right</i>
         產業別
@@ -13,6 +16,18 @@
           </label>
         </a>
       </div>
+    </li>
+    <li>
+      <div class="divider"></div>
+    </li>
+    <li>
+      <a class="subheader">其它</a>
+    </li>
+    <li>
+      <a href="https://github.com/sheiun/resumi/" target="_blank">
+        <i class="material-icons">code</i>
+        原始碼
+      </a>
     </li>
   </ul>
   <slot></slot>
