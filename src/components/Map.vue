@@ -27,7 +27,7 @@ export default {
   name: "Map",
   mounted() {
     const map = L.map("map").setView([25.033, 121.5654], 11);
-    L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?", {
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?", {
       attribution:
         'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
       minZoom: 6,
@@ -39,7 +39,7 @@ export default {
 
     const markers = [];
     this.$store.state.comps.forEach((comp) => {
-      // if (!this.$store.state.myComps.includes(comp.用人單位名稱)) return;
+      if (!this.$store.state.myComps.includes(comp.用人單位名稱)) return;
       const jobs = this.$store.state.job[comp.id];
       const marker = L.marker([comp.經度, comp.緯度], {
         title: comp.用人單位名稱 + "       " + comp.單位地址,
