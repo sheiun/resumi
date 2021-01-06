@@ -11,6 +11,7 @@
         <a class="btn-floating green"><i class="material-icons">get_app</i></a>
       </li>
       <li class="hide-on-med-and-up">
+        <!-- TODO: search feature for mobile -->
         <a class="btn-floating blue">
           <i class="material-icons">search</i>
         </a>

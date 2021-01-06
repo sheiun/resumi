@@ -6,7 +6,6 @@
         {{ title }}
       </a>
       <ul class="right hide-on-small-only">
-        <!-- TODO: mobile compatibility -->
         <!-- NOTE: height: unset; fixes chrome showing problem -->
         <div class="input-field" style="height: unset;">
           <input
