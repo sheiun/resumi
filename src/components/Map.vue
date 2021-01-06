@@ -39,7 +39,7 @@ export default {
 
     const markers = [];
     this.$store.state.comps.forEach((comp) => {
-      if (!this.$store.state.myComps.includes(comp.用人單位名稱)) return;
+      // if (!this.$store.state.myComps.includes(comp.用人單位名稱)) return;
       const jobs = this.$store.state.job[comp.id];
       const marker = L.marker([comp.經度, comp.緯度], {
         title: comp.用人單位名稱 + "       " + comp.單位地址,
@@ -54,6 +54,7 @@ export default {
         riseOnHover: true,
       });
       marker.addTo(map);
+      console.log(marker);
       marker.bindPopup(
         Object.keys(comp)
           .filter((k) => !["id", "經度", "緯度"].includes(k))

@@ -28,9 +28,12 @@ export default createStore({
             state.map.setView([marker._latlng.lat, marker._latlng.lng], 13);
             found = true;
           }
-          marker.setOpacity(1);
+          marker._icon.style.display = "";
+          marker._shadow.style.display = "";
         } else {
-          marker.setOpacity(0);
+          console.log(marker);
+          marker._icon.style.display = "none";
+          marker._shadow.style.display = "none";
         }
       }
     },
