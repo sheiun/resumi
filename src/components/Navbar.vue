@@ -1,18 +1,11 @@
 <template>
   <nav class="blue-grey darken-1">
     <div class="nav-wrapper">
-      <ul class="left">
-        <li>
-          <a class="waves-effect" @click="$store.dispatch('openSidebar')">
-            <i class="material-icons">menu</i>
-          </a>
-        </li>
-      </ul>
-      <a href="#" class="brand-logo">
+      <a href="#" class="brand-logo" style="margin-left: 10px;">
         <li class="material-icons">work</li>
         {{ title }}
       </a>
-      <ul class="right hide-on-med-and-down">
+      <ul class="right hide-on-small-only">
         <!-- TODO: mobile compatibility -->
         <!-- NOTE: height: unset; fixes chrome showing problem -->
         <div class="input-field" style="height: unset;">

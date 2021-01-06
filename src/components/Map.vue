@@ -4,7 +4,9 @@
 
 <script>
 import L from "leaflet";
-const makeIcon = (color) =>
+
+// TODO: add numbers: 1. create images with numbers
+const createIcon = (color) =>
   new L.Icon({
     iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${color}.png`,
     shadowUrl:
@@ -16,11 +18,11 @@ const makeIcon = (color) =>
   });
 
 const icons = {
-  default: new L.Icon.Default(),
-  green: makeIcon("green"),
-  red: makeIcon("red"),
-  violte: makeIcon("violet"),
-  grey: makeIcon("grey"),
+  default: createIcon("blue"),
+  green: createIcon("green"),
+  red: createIcon("red"),
+  violte: createIcon("violet"),
+  grey: createIcon("grey"),
 };
 
 export default {
@@ -39,7 +41,6 @@ export default {
 
     const markers = [];
     this.$store.state.comps.forEach((comp) => {
-      // if (!this.$store.state.myComps.includes(comp.用人單位名稱)) return;
       const jobs = this.$store.state.job[comp.id];
       const marker = L.marker([comp.經度, comp.緯度], {
         title: comp.用人單位名稱 + "       " + comp.單位地址,
