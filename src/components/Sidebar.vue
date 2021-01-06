@@ -8,10 +8,10 @@
         <i class="material-icons">arrow_right</i>
         產業別
       </div>
-      <div class="collapsible-body" v-for="indu in indus" :key="indu">
+      <div class="collapsible-body" v-for="(indu, i) in indus" :key="indu">
         <a style="padding: 20px;">
           <label>
-            <input type="checkbox" />
+            <input type="checkbox" v-model="choices[i]" />
             <span>{{ indu }}</span>
           </label>
         </a>
@@ -39,7 +39,17 @@ import indus from "../data/industries.json";
 
 export default {
   name: "Sidebar",
-  data: () => ({ indus }),
+  data: () => ({ indus, choices: indus.map(() => false) }),
+  computed: {
+    filteredIndus() {
+      return this.indus.filter((indu, i) => this.choices[i]);
+    },
+  },
+  watch: {
+    filteredIndus: function() {
+      this.$store.dispatch("filter", this.filteredIndus);
+    },
+  },
   mounted() {
     this.$store.state.sidebar = M.Sidenav.init(
       document.querySelector(".sidenav")

@@ -3,8 +3,6 @@
 </template>
 
 <script>
-import comps from "../data/2020-10-06.json";
-import cities from "../data/cities.json";
 import L from "leaflet";
 const makeIcon = (color) =>
   new L.Icon({
@@ -21,54 +19,84 @@ const icons = {
   default: new L.Icon.Default(),
   green: makeIcon("green"),
   red: makeIcon("red"),
+  violte: makeIcon("violet"),
   grey: makeIcon("grey"),
 };
 
 export default {
   name: "Map",
-  computed: {
-    noAddrComps() {
-      return comps.filter((comp) => !comp.地址);
-    },
-  },
   mounted() {
     const map = L.map("map").setView([25.033, 121.5654], 11);
-    L.tileLayer(
-      "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
-      {
-        attribution:
-          'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        minZoom: 7,
-        maxZoom: 16,
-        id: "mapbox/streets-v11",
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken:
-          "pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw",
-      }
-    ).addTo(map);
+    L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?", {
+      attribution:
+        'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+      minZoom: 6,
+      maxZoom: 16,
+      tileSize: 512,
+      zoomOffset: -1,
+      detectRetina: true,
+    }).addTo(map);
 
     const markers = [];
-    comps.forEach((comp) => {
-      let marker;
-      if (comp.地址) {
-        marker = L.marker([comp.經度, comp.緯度], {
-          title: comp.地址,
-        });
-      } else {
-        marker = L.marker(
-          cities[comp.地點].map((v) => v + Math.random() / 50),
-          {
-            icon: icons.grey,
-          }
-        );
-      }
+    this.$store.state.comps.forEach((comp) => {
+      // if (!this.$store.state.myComps.includes(comp.用人單位名稱)) return;
+      const jobs = this.$store.state.job[comp.id];
+      const marker = L.marker([comp.經度, comp.緯度], {
+        title: comp.用人單位名稱 + "       " + comp.單位地址,
+        icon:
+          jobs.length == 1
+            ? icons.default
+            : jobs.length == 2
+            ? icons.green
+            : jobs.length == 3
+            ? icons.red
+            : icons.violte,
+        riseOnHover: true,
+      });
       marker.addTo(map);
-      marker.bindPopup(`${comp.用人單位名稱}`);
+      marker.bindPopup(
+        Object.keys(comp)
+          .filter((k) => !["id", "經度", "緯度"].includes(k))
+          .map((k) =>
+            k == "用人單位名稱" ? "<b>" + comp[k] + "</b><hr />" : comp[k]
+          )
+          .join("<br />")
+      );
+      marker.on("contextmenu", () => {
+        // 細項
+        this.$store.dispatch("openPopup", {
+          title: comp.用人單位名稱,
+          content:
+            Object.keys(comp)
+              .filter((k) => !["id", "經度", "緯度"].includes(k))
+              .map((k) =>
+                k == "用人單位名稱" ? "<b>" + comp[k] + "</b><hr />" : comp[k]
+              )
+              .join("<br />") +
+            "<hr />" +
+            this.$store.state.job[comp.id]
+              .map(
+                (comp) =>
+                  "<table>" +
+                  Object.entries(comp)
+                    .filter((kv) => !["id"].includes(kv[0]))
+                    .map(
+                      (kv) =>
+                        `<tr><td>${kv[0]}</td><td>${kv[1]
+                          .toString()
+                          .replaceAll("\n", "<br />")}</td><tr/>`
+                    )
+                    .join("") +
+                  "</table>"
+              )
+              .join("<hr />"),
+        });
+      });
       markers.push(marker);
     });
 
     map.setView([25.033, 121.5654], 11);
+    this.$store.state.map = map;
     this.$store.state.markers = markers;
   },
 };

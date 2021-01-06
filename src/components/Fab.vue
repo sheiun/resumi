@@ -36,3 +36,9 @@ export default {
   },
 };
 </script>
+
+<style>
+td:first-child {
+  min-width: 20%;
+}
+</style>
