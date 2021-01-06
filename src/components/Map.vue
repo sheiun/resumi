@@ -107,15 +107,14 @@ export default {
 #map {
   z-index: 100;
   position: absolute;
-  top: 64px;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  margin-top: 64px;
+  width: 100%;
+  height: calc(100vh - 64px);
 }
 
 @media only screen and (max-width: 600px) {
   #map {
-    top: 54px;
+    margin-top: 54px;
   }
 }
 </style>
