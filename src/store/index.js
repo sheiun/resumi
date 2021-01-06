@@ -31,7 +31,6 @@ export default createStore({
           marker._icon.style.display = "";
           marker._shadow.style.display = "";
         } else {
-          console.log(marker);
           marker._icon.style.display = "none";
           marker._shadow.style.display = "none";
         }

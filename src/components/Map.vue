@@ -54,7 +54,6 @@ export default {
         riseOnHover: true,
       });
       marker.addTo(map);
-      console.log(marker);
       marker.bindPopup(
         Object.keys(comp)
           .filter((k) => !["id", "經度", "緯度"].includes(k))
