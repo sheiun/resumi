@@ -10,7 +10,7 @@ export default createStore({
     popupData: null,
     map: null,
     markers: [],
-    indus: [],
+    options: { orgs: [], indus: [] },
     comps,
     job, // {id1: [job1, job2], id2: [job3, job4, ...], ...}
   },
@@ -21,7 +21,10 @@ export default createStore({
         const marker = state.markers[i];
         if (
           comps[i].用人單位名稱.includes(state.text) &&
-          (state.indus.length == 0 || state.indus.includes(comps[i].產業別))
+          (state.options.indus.length == 0 ||
+            state.options.indus.includes(comps[i].產業別)) &&
+          (state.options.orgs.length == 0 ||
+            state.options.orgs.includes(comps[i].單位別))
         ) {
           if (!found) {
             marker.openPopup();
@@ -53,8 +56,8 @@ export default createStore({
       context.state.text = text;
       context.commit("updateMarkers");
     },
-    filter(context, indus) {
-      context.state.indus = indus;
+    filter(context, options) {
+      context.state.options = options;
       context.commit("updateMarkers");
     },
   },

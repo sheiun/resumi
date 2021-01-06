@@ -6,12 +6,26 @@
     <li>
       <div class="collapsible-header">
         <i class="material-icons">arrow_right</i>
+        單位別
+      </div>
+      <div class="collapsible-body" v-for="(org, i) in orgs" :key="org">
+        <a style="padding: 20px;">
+          <label>
+            <input type="checkbox" v-model="orgChoices[i]" />
+            <span>{{ org }}</span>
+          </label>
+        </a>
+      </div>
+    </li>
+    <li>
+      <div class="collapsible-header">
+        <i class="material-icons">arrow_right</i>
         產業別
       </div>
       <div class="collapsible-body" v-for="(indu, i) in indus" :key="indu">
         <a style="padding: 20px;">
           <label>
-            <input type="checkbox" v-model="choices[i]" />
+            <input type="checkbox" v-model="induChoices[i]" />
             <span>{{ indu }}</span>
           </label>
         </a>
@@ -36,18 +50,36 @@
 <script>
 import M from "materialize-css";
 import indus from "../data/industries.json";
+import orgs from "../data/orgs.json";
 
 export default {
   name: "Sidebar",
-  data: () => ({ indus, choices: indus.map(() => false) }),
+  data: () => ({
+    indus,
+    induChoices: indus.map(() => false),
+    orgs,
+    orgChoices: orgs.map(() => false),
+  }),
   computed: {
+    filteredOrgas() {
+      return this.orgs.filter((orga, i) => this.orgChoices[i]);
+    },
     filteredIndus() {
-      return this.indus.filter((indu, i) => this.choices[i]);
+      return this.indus.filter((indu, i) => this.induChoices[i]);
     },
   },
   watch: {
+    filteredOrgas: function() {
+      this.$store.dispatch("filter", {
+        orgs: this.filteredOrgas,
+        indus: this.filteredIndus,
+      });
+    },
     filteredIndus: function() {
-      this.$store.dispatch("filter", this.filteredIndus);
+      this.$store.dispatch("filter", {
+        orgs: this.filteredOrgas,
+        indus: this.filteredIndus,
+      });
     },
   },
   mounted() {
