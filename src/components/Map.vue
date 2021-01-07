@@ -4,26 +4,7 @@
 
 <script>
 import L from "leaflet";
-
-// TODO: add numbers: 1. create images with numbers
-const createIcon = (color) =>
-  new L.Icon({
-    iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${color}.png`,
-    shadowUrl:
-      "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41],
-  });
-
-const icons = {
-  default: createIcon("blue"),
-  green: createIcon("green"),
-  red: createIcon("red"),
-  violte: createIcon("violet"),
-  grey: createIcon("grey"),
-};
+import icons from "leaflet-color-number-markers";
 
 export default {
   name: "Map",
@@ -42,16 +23,24 @@ export default {
     const markers = [];
     this.$store.state.comps.forEach((comp) => {
       const jobs = this.$store.state.job[comp.id];
+      const numJob = jobs.reduce(
+        (total, job) => total + Math.max(job.國內役男, job.國外役男),
+        0
+      );
       const marker = L.marker([comp.經度, comp.緯度], {
         title: comp.用人單位名稱 + "       " + comp.單位地址,
         icon:
           jobs.length == 1
-            ? icons.default
+            ? icons.red.numbers[numJob]
             : jobs.length == 2
-            ? icons.green
+            ? icons.orange.numbers[numJob]
             : jobs.length == 3
-            ? icons.red
-            : icons.violte,
+            ? icons.yellow.numbers[numJob]
+            : jobs.length == 4
+            ? icons.green.numbers[numJob]
+            : jobs.length == 5
+            ? icons.blue.numbers[numJob]
+            : icons.violet.numbers[numJob],
         riseOnHover: true,
       });
       marker.addTo(map);

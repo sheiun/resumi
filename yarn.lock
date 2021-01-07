@@ -5166,7 +5166,14 @@ launch-editor@^2.2.1:
     chalk "^2.3.0"
     shell-quote "^1.6.1"
 
-leaflet@^1.7.1:
+leaflet-color-number-markers@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/leaflet-color-number-markers/-/leaflet-color-number-markers-1.0.7.tgz#4f1c2530d0b7ee5b150b6756c950af9e3a6f7024"
+  integrity sha512-YR7cGBQ+jHjOxQQrrh0y3cqt5h10WXZShi7/Is1vgLKmj2dJb12QpYAjc1yIY+mHY/dBpdwNy1qMA1crVxL1UQ==
+  dependencies:
+    leaflet ">=0.7.0"
+
+leaflet@>=0.7.0, leaflet@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.7.1.tgz#10d684916edfe1bf41d688a3b97127c0322a2a19"
   integrity sha512-/xwPEBidtg69Q3HlqPdU3DnrXQOvQU/CCHA1tcDQVzOwm91YMYaILjNp7L4Eaw5Z4sOYdbBz6koWyibppd8Zqw==

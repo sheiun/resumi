@@ -27,10 +27,8 @@ export default {
   },
   mounted() {
     [
-      "<b class='blue-text'>藍色標記</b> → 一種職缺",
-      "<b class='green-text'>綠色標記</b> → 兩種職缺",
-      "<b class='red-text'>紅色標記</b> → 三種職缺",
-      "<b class='purple-text'>紫色標記</b> → 多於三種職缺",
+      "標記顏色 → 依序為<b class='red-text'>紅</b><b class='orange-text'>橙</b>...<b class='purple-text'>紫</b>",
+      "標記數字 → 缺額的總人數",
     ].forEach((msg) =>
       M.toast({
         html: msg,
