@@ -106,4 +106,7 @@ export default {
     margin-top: 54px;
   }
 }
+td:first-child {
+  min-width: 20%;
+}
 </style>

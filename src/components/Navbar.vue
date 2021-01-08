@@ -1,11 +1,11 @@
 <template>
   <nav class="blue-grey darken-1">
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo" style="margin-left: 10px;">
-        <li class="material-icons">work</li>
+      <a href="#" class="brand-logo left" style="margin-left: 10px;">
+        <i class="material-icons">work</i>
         {{ title }}
       </a>
-      <ul class="right hide-on-small-only">
+      <ul class="right">
         <!-- NOTE: height: unset; fixes chrome showing problem -->
         <div class="input-field" style="height: unset;">
           <input
@@ -61,5 +61,13 @@ export default {
 .brand-logo {
   padding: 5px;
   white-space: nowrap;
+}
+@media only screen and (max-width: 600px) {
+  .brand-logo {
+    font-size: 18px;
+  }
+  ul.right {
+    width: 50%;
+  }
 }
 </style>
