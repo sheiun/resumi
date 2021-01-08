@@ -49,3 +49,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ## LICENSE
 
 See [LICENSE](LICENSE)
+
+Not include the data.
