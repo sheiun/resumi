@@ -5,8 +5,10 @@
 ## Dependencies
 
 - [x] Vue 3
-- [x] Materialize
+  - [x] Vuex
+- [x] Materialize CSS
 - [x] Leaflet
+  - [x] leaflet-color-number-markers
 
 ## Project setup
 
@@ -37,7 +39,7 @@ yarn lint
 ```bash
 yarn build --dest docs
 echo "resumi.sheiun.me" > docs/CNAME
-git push
+# commit and push
 ```
 
 ### Customize configuration
