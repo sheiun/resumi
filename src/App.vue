@@ -52,4 +52,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   display: flex;
 }
+@media screen and (max-width: 600px) {
+  .toast {
+    width: 70%;
+    margin: 5px auto;
+  }
+}
 </style>
