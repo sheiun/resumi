@@ -99,6 +99,8 @@ export default {
   margin-top: 64px;
   width: 100%;
   height: calc(100vh - 64px);
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 @media only screen and (max-width: 600px) {
